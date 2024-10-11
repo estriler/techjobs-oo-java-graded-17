@@ -1,11 +1,19 @@
 package org.launchcode.techjobs.oo;
 
 import org.junit.Test;
+//import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.*;
 
 public class JobTest {
     //TODO: Create your unit tests here
+
+    //Not working for some reason???
+//    @BeforeEach
+//    public void createJobObjects(){
+//        Job job1 = new Job();
+//        Job job2 = new Job();
+//    }
 
     @Test
     public void testSettingJobId(){
@@ -32,4 +40,34 @@ public class JobTest {
         assertFalse(job1.equals(job2));
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals('\n',job1.toString().charAt(0));
+        assertEquals('\n', job1.toString().charAt(job1.toString().length() - 1));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String s = System.lineSeparator();
+//        assertEquals(s+"ID: " + job1.getId() + s+"Name: Product tester"+s+"Employer: ACME"+s+"Location: Desert"+s+"Position Type: Quality control"+s+"Core Competency: Persistence"+s, job1.toString());
+        assertEquals("\nID: " + job1.getId() +"\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job1 = new Job("", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String s = System.lineSeparator();
+//        assertEquals(s +"ID: " + job1.getId() + s +"Name: Data not available"+ s +"Employer: ACME"+ s +"Location: Desert"+ s +"Position Type: Quality control"+ s +"Core Competency: Persistence"+ s, job1.toString());
+        assertEquals("\nID: " + job1.getId() + "\nName: Data not available\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
+    }
+
+    @Test
+    public void testToStringHandlesAllEmptyFields(){
+        Job job1 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        assertEquals("OOPS! This job does not seem to exist.", job1.toString());
+    }
+
 }
+

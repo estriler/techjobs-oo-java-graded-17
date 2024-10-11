@@ -47,6 +47,45 @@ public class Job {
         return Objects.hash(id, name, employer, location, positionType, coreCompetency);
     }
 
+    @Override
+    public String toString(){
+        if(name.equals("") && employer.getValue().equals("") && location.getValue().equals("") && positionType.getValue().equals("") && coreCompetency.getValue().equals("")){
+            return "OOPS! This job does not seem to exist.";
+        }
+        if(name.equals("")){
+            name = "Data not available";
+        }
+        if(employer.getValue().equals("")){
+            employer.setValue("Data not available");
+        }
+        if(location.getValue().equals("")){
+            location.setValue("Data not available");
+        }
+        if(positionType.getValue().equals("")){
+            positionType.setValue("Data not available");
+        }
+        if(coreCompetency.getValue().equals("")){
+            coreCompetency.setValue("Data not available");
+        }
+
+
+//        return  System.lineSeparator() +
+//                "ID: " + id + System.lineSeparator() +
+//                "Name: " + name + System.lineSeparator() +
+//                "Employer: " + employer + System.lineSeparator() +
+//                "Location: " + location + System.lineSeparator() +
+//                "Position Type: " + positionType + System.lineSeparator() +
+//                "Core Competency: " + coreCompetency + System.lineSeparator();
+
+        return  "\nID: " + id +
+                "\nName: " + name +
+                "\nEmployer: " + employer +
+                "\nLocation: " + location +
+                "\nPosition Type: " + positionType +
+                "\nCore Competency: " + coreCompetency +
+                "\n";
+    }
+
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
@@ -95,4 +134,6 @@ public class Job {
     public int getId() {
         return id;
     }
+
+
 }
