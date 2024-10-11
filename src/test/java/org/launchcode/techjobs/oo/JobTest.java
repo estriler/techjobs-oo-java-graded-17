@@ -3,6 +3,7 @@ package org.launchcode.techjobs.oo;
 import org.junit.Test;
 //import org.junit.jupiter.api.BeforeEach;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 
 public class JobTest {
@@ -43,24 +44,26 @@ public class JobTest {
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals('\n',job1.toString().charAt(0));
-        assertEquals('\n', job1.toString().charAt(job1.toString().length() - 1));
+//        assertEquals('\n',job1.toString().charAt(0));
+//        assertEquals('\n', job1.toString().charAt(job1.toString().length() - 1));
+        assertTrue(job1.toString().startsWith(lineSeparator()));
+        assertTrue(job1.toString().endsWith(lineSeparator()));
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String s = System.lineSeparator();
-//        assertEquals(s+"ID: " + job1.getId() + s+"Name: Product tester"+s+"Employer: ACME"+s+"Location: Desert"+s+"Position Type: Quality control"+s+"Core Competency: Persistence"+s, job1.toString());
-        assertEquals("\nID: " + job1.getId() +"\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
+        assertEquals(s+"ID: " + job1.getId() + s+"Name: Product tester"+s+"Employer: ACME"+s+"Location: Desert"+s+"Position Type: Quality control"+s+"Core Competency: Persistence"+s, job1.toString());
+//        assertEquals("\nID: " + job1.getId() +"\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
         Job job1 = new Job("", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String s = System.lineSeparator();
-//        assertEquals(s +"ID: " + job1.getId() + s +"Name: Data not available"+ s +"Employer: ACME"+ s +"Location: Desert"+ s +"Position Type: Quality control"+ s +"Core Competency: Persistence"+ s, job1.toString());
-        assertEquals("\nID: " + job1.getId() + "\nName: Data not available\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
+        assertEquals(s +"ID: " + job1.getId() + s +"Name: Data not available"+ s +"Employer: ACME"+ s +"Location: Desert"+ s +"Position Type: Quality control"+ s +"Core Competency: Persistence"+ s, job1.toString());
+//        assertEquals("\nID: " + job1.getId() + "\nName: Data not available\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job1.toString());
     }
 
     @Test
